@@ -6,23 +6,9 @@ A modern, professional ReactJS frontend for a Mini Core Banking System with JWT 
 
 ### Prerequisites
 - Node.js 18+ installed
-- Backend API running at `http://localhost:8080`
-- In production running at 
+- Backend API running at `https://amused-kiri-quanggiap-0ccda032.koyeb.app/`
 
-### Installation
-
-```bash
-# Navigate to project directory
-example: cd e:\7.Pet_Project\Java\CoreBanking_FE
-
-# Install dependencies (already done)
-npm install
-
-# Start development server
-npm run dev
-```
-
-Access the application at: **http://localhost:5173**
+Access the application at: **https://corebanking-fe.vercel.app/**
 
 ### Demo Credentials
 
@@ -64,14 +50,6 @@ src/
 └── App.jsx          # Main app with routing
 ```
 
-## 🔐 API Configuration
-
-Update `.env` to change the backend API URL:
-
-```env
-VITE_API_BASE_URL=http://localhost:8080/api
-```
-
 ## 🏗️ Build & Deploy
 
 ### Development
@@ -89,14 +67,6 @@ npm run build
 npm run preview
 ```
 
-## 📖 Documentation
-
-See [walkthrough.md](file:///C:/Users/acer/.gemini/antigravity/brain/1bb4f5b0-7c73-4c87-891b-381ffc369ae5/walkthrough.md) for complete documentation including:
-- Feature details
-- Testing guide
-- Deployment instructions
-- API integration details
-
 ## 🎯 Pages
 
 - `/login` - User login
@@ -105,35 +75,11 @@ See [walkthrough.md](file:///C:/Users/acer/.gemini/antigravity/brain/1bb4f5b0-7c
 - `/accounts/:id` - Account details and audit trail
 - `/transfer` - Fund transfer form
 
-## 🛡️ Security
-
-- JWT token stored in localStorage
-- Automatic token attachment to requests
-- 401 handling with auto-logout
-- Protected routes with authentication guards
-
-## 🎨 Design Highlights
-
-- Premium gradient account cards
-- Smooth transitions and animations
-- Loading skeletons for better UX
-- Toast notifications for feedback
-- Color-coded transaction amounts
-- Responsive grid layouts
-
 ## 📱 Responsive Breakpoints
 
 - Mobile: < 768px
 - Tablet: 768px - 1024px
 - Desktop: > 1024px
-
-## 🧪 Testing
-
-1. **Authentication:** Register → Login → Logout
-2. **Dashboard:** View accounts, check balances
-3. **Account Details:** View transactions and audit trail
-4. **Transfers:** Execute transfers with validation
-5. **Error Handling:** Test invalid inputs, network errors
 
 ## 🚀 Deployment
 
@@ -153,7 +99,7 @@ netlify deploy --prod
 ## 📝 Environment Variables
 
 ```env
-VITE_API_BASE_URL=http://localhost:8080/api
+VITE_API_BASE_URL=https://amused-kiri-quanggiap-0ccda032.koyeb.app/api
 ```
 
 ## 🤝 Backend Integration
@@ -171,17 +117,5 @@ This frontend expects the following backend API endpoints:
 
 **Transfers:**
 - `POST /api/transfers`
-
-## 📊 Status
-
-✅ **Production Ready**
-
-All core features implemented and tested.
-
-## 📞 Support
-
-For issues or questions, refer to the [implementation plan](file:///C:/Users/acer/.gemini/antigravity/brain/1bb4f5b0-7c73-4c87-891b-381ffc369ae5/implementation_plan.md).
-
----
 
 **Built with ❤️ using React + Vite + TailwindCSS**
