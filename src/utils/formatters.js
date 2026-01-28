@@ -1,12 +1,12 @@
 // Currency formatter
 export const formatCurrency = (amount) => {
-    if (amount === null || amount === undefined) return '$0.00';
+    if (amount === null || amount === undefined) return '$0';
 
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 4
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
     }).format(amount);
 };
 

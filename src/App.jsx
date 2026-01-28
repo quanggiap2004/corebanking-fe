@@ -7,6 +7,7 @@ import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import AccountDetailsPage from './pages/AccountDetailsPage';
 import TransferPage from './pages/TransferPage';
+import DepositPage from './pages/DepositPage';
 
 // PrivateRoute component to protect routes
 const PrivateRoute = ({ children }) => {
@@ -81,6 +82,14 @@ function AppRoutes() {
         element={
           <PrivateRoute>
             <TransferPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/deposit"
+        element={
+          <PrivateRoute>
+            <DepositPage />
           </PrivateRoute>
         }
       />

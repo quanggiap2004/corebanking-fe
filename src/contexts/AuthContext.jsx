@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
       setUser({
         username: authData.username,
         userId: authData.userId,
+        transactionLimit: authData.transactionLimit,
       });
       setIsAuthenticated(true);
     }
@@ -30,14 +31,14 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await apiLogin(credentials);
       
-      const { token: newToken, username, userId } = response;
+      const { token: newToken, username, userId, transactionLimit } = response;
       
       // Store in localStorage
-      storeAuthData(newToken, username, userId);
+      storeAuthData(newToken, username, userId, transactionLimit);
       
       // Update state
       setToken(newToken);
-      setUser({ username, userId });
+      setUser({ username, userId, transactionLimit });
       setIsAuthenticated(true);
       
       return { success: true, data: response };

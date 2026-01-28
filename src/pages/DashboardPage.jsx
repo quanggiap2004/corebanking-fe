@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../hooks/useAuth';
 import { getUserAccounts } from '../services/accountService';
+import { formatCurrency } from '../utils/formatters';
 import Header from '../components/layout/Header';
 import AccountCard from '../components/features/AccountCard';
 import LoadingSkeleton from '../components/common/LoadingSkeleton';
@@ -39,10 +40,20 @@ const DashboardPage = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome back, {user?.username}!
-          </h1>
-          <p className="text-gray-600">Here's an overview of your accounts</p>
+          <div className="flex justify-between items-start">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                Welcome back, {user?.username}!
+              </h1>
+              <p className="text-gray-600">Here's an overview of your accounts</p>
+            </div>
+            {user?.transactionLimit && (
+              <div className="bg-primary-50 px-4 py-2 rounded-lg border border-primary-100">
+                <p className="text-xs text-primary-600 font-medium uppercase tracking-wide">Transaction Limit</p>
+                <p className="text-lg font-bold text-primary-700">{formatCurrency(user.transactionLimit)}</p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Quick Actions */}
@@ -54,6 +65,14 @@ const DashboardPage = () => {
           >
             <PlusCircleIcon className="h-5 w-5" />
             <span>New Transfer</span>
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => navigate('/deposit')}
+            className="flex items-center space-x-2"
+          >
+            <BanknotesIcon className="h-5 w-5" />
+            <span>Deposit Money</span>
           </Button>
         </div>
 

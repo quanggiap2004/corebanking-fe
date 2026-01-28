@@ -175,16 +175,23 @@ const TransferPage = () => {
             />
 
             {/* Amount */}
-            <Input
-              label="Amount"
-              type="number"
-              step="0.01"
-              id="amount"
-              placeholder="0.00"
-              {...register('amount', { valueAsNumber: true })}
-              error={errors.amount?.message}
-              required
-            />
+            <div>
+              <Input
+                label="Amount"
+                type="number"
+                step="0.01"
+                id="amount"
+                placeholder="0.00"
+                {...register('amount', { valueAsNumber: true })}
+                error={errors.amount?.message}
+                required
+              />
+              {user?.transactionLimit && (
+                 <p className="mt-1 text-xs text-gray-500">
+                   Your transaction limit: <span className="font-medium">{formatCurrency(user.transactionLimit)}</span> per transfer
+                 </p>
+              )}
+            </div>
 
             {/* Transfer Type */}
             <div>
