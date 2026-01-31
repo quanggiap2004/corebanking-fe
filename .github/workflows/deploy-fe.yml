@@ -1,0 +1,53 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "package.json"
+      - "vite.config.js"
+      - "Dockerfile"
+      - ".github/workflows/**"
+
+env:
+  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/core-banking-fe
+  CONTAINER_NAME: core-banking-fe
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+          script: |
+            docker stop ${{ env.CONTAINER_NAME }} || true
+            docker rm ${{ env.CONTAINER_NAME }} || true
+            docker pull ${{ env.IMAGE_NAME }}:latest
+            docker run -d --restart unless-stopped --name ${{ env.CONTAINER_NAME }} -p 80:80 ${{ env.IMAGE_NAME }}:latest
